@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .course-progress {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .course {
+            width: calc(33.33% - 10px);
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 10px;
+            background-color: #4CAF50;
+        }
+        .assignments li, .announcements li {
+            margin-bottom: 10px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
+            .course {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>LMS Dashboard</h2>
+            <ul>
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Assignments</a></li>
+                <li><a href="#">Grades</a></li>
+                <li><a href="#">Calendar</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <h1>Welcome, John!</h1>
+                <div class="user-info">
+                    <img src="/placeholder.svg?height=40&width=40" alt="User Avatar">
+                    <span>John Doe</span>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Course Progress</h2>
+                <div class="course-progress">
+                    <div class="course">
+                        <h3>Introduction to HTML</h3>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%;"></div>
+                        </div>
+                        <p>75% Complete</p>
+                    </div>
+                    <div class="course">
+                        <h3>CSS Fundamentals</h3>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 50%;"></div>
+                        </div>
+                        <p>50% Complete</p>
+                    </div>
+                    <div class="course">
+                        <h3>JavaScript Basics</h3>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 25%;"></div>
+                        </div>
+                        <p>25% Complete</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Upcoming Assignments</h2>
+                <ul class="assignments">
+                    <li>HTML Project - Due June 15, 2023</li>
+                    <li>CSS Quiz - Due June 18, 2023</li>
+                    <li>JavaScript Exercise - Due June 22, 2023</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>Recent Announcements</h2>
+                <ul class="announcements">
+                    <li>New course on React.js coming next month!</li>
+                    <li>Reminder: Complete course surveys by end of week</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate loading course progress
+            const progressBars = document.querySelectorAll('.progress');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.transition = 'width 1s ease-in-out';
+                    bar.style.width = width;
+                }, 300);
+            });
+
+            // Add click event to sidebar links
+            const sidebarLinks = document.querySelectorAll('.sidebar a');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    alert('Navigating to: ' + this.textContent);
+                });
+            });
+
+            // Add hover effect to cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseover', function() {
+                    this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+                });
+                card.addEventListener('mouseout', function() {
+                    this.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
